@@ -61,13 +61,13 @@ extension GitHubClient {
 }
 
 struct SearchRepositoriesResponse: Decodable {
-  var items: [GitHubRepository]?
-  var totalCount: Int?
+  var items: [GitHubRepository]
+  var totalCount: Int
   
   init(from decoder: Decoder) throws {
     let root = try decoder.container(keyedBy: CodingKeys.self)
-    items = try? root.decode(Array<GitHubRepository>.self, forKey: .items)
-    totalCount = try? root.decode(Int.self, forKey: .totalCount)
+    items = try root.decode(Array<GitHubRepository>.self, forKey: .items)
+    totalCount = try root.decode(Int.self, forKey: .totalCount)
   }
   
   private enum CodingKeys: String, CodingKey {
