@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias SearchRepositoriesResult = Result<SearchRepositoriesResponse, Error>
+typealias SearchRepositoriesResult = Result<SearchRepositoriesResponse, GitHubClientError>
 
 extension GitHubClient {
   struct SearchRepositories: GitHubRequest {
@@ -32,20 +32,27 @@ extension GitHubClient {
       
       let task = URLSession.shared.dataTask(with: urlComponents.url!) { data, response, error in
         guard error == nil else {
-          completion(SearchRepositoriesResult(error: error!))
+          completion(SearchRepositoriesResult(error: .connectionError(error)))
           return
         }
-        
-        guard let jsonData = data else {
-          print(error as Any)
+        guard let jsonData = data, let response = response as? HTTPURLResponse else {
+          completion(SearchRepositoriesResult(error: .invalidResponse(error)))
           return
         }
-        
-        do {
-          let result = try JSONDecoder().decode(SearchRepositoriesResponse.self, from: jsonData)
-          completion(SearchRepositoriesResult(value: result))
-        } catch(let e) {
-          completion(SearchRepositoriesResult(error: e))
+
+        switch response.statusCode {
+        case 200:
+          do {
+            let result = try JSONDecoder().decode(SearchRepositoriesResponse.self, from: jsonData)
+            completion(SearchRepositoriesResult(value: result))
+          } catch(let e) {
+            completion(SearchRepositoriesResult(error: .invalidResponse(e)))
+          }
+        case 400...599:
+          completion(SearchRepositoriesResult(error: .httpError(String(data: jsonData, encoding: .utf8))))
+        default:
+          // TODO: 他のステータスは無視しているが必要あれば実装する
+          break
         }
       }
       task.resume()

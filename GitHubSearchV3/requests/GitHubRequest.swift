@@ -14,7 +14,7 @@ protocol GitHubRequest {
   var path: String { get }
   var queries: [URLQueryItem]? { get }
   
-  func send(completion: @escaping (Result<Response, Error>) -> Void)
+  func send(completion: @escaping (Result<Response, GitHubClientError>) -> Void)
 }
 
 extension GitHubRequest {
@@ -28,13 +28,13 @@ extension GitHubRequest {
 
 enum Result<Value, Error> {
   case success(Value)
-  case failure(Error)
+  case failure(GitHubClientError)
   
   init(value: Value) {
     self = .success(value)
   }
   
-  init(error: Error) {
+  init(error: GitHubClientError) {
     self = .failure(error)
   }
 }
