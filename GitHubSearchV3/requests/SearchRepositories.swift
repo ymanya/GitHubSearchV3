@@ -60,8 +60,11 @@ extension GitHubClient {
   }
 }
 
+/// リポジトリ検索のレスポンスモデル
 struct SearchRepositoriesResponse: Decodable {
+  ///　取得したリポジトリの配列
   var items: [GitHubRepository]
+  /// 検索結果のトータル件数
   var totalCount: Int
   
   init(from decoder: Decoder) throws {
@@ -76,9 +79,13 @@ struct SearchRepositoriesResponse: Decodable {
   }
 }
 
+/// GitHubリポジトリのモデル
 struct GitHubRepository: Decodable {
+  /// リポジトリ名
   var fullName: String
+  /// リポジトリの説明
   var desc: String?
+  /// リポジトリのURL
   var htmlUrl: URL
   
   private enum CodingKeys: String, CodingKey {
