@@ -78,12 +78,12 @@ struct SearchRepositoriesResponse: Decodable {
 
 struct GitHubRepository: Decodable {
   var fullName: String
-  var description: String
+  var desc: String?
   var htmlUrl: URL
   
   private enum CodingKeys: String, CodingKey {
     case fullName = "full_name"
-    case description = "description"
+    case desc = "description"
     case htmlUrl = "html_url"
   }
 }
