@@ -43,7 +43,9 @@ extension GitHubClient {
         switch response.statusCode {
         case 200:
           do {
-            let result = try JSONDecoder().decode(SearchRepositoriesResponse.self, from: jsonData)
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.dateDecodingStrategy = .iso8601
+            let result = try jsonDecoder.decode(SearchRepositoriesResponse.self, from: jsonData)
             completion(SearchRepositoriesResult(value: result))
           } catch(let e) {
             completion(SearchRepositoriesResult(error: .invalidResponse(e)))
@@ -87,10 +89,19 @@ struct GitHubRepository: Decodable {
   var desc: String?
   /// リポジトリのURL
   var htmlUrl: URL
+  /// スター数
+  var stargazersCount: Int
+  /// リポジトリで使われている言語
+  var language: String?
+  /// 最終更新日
+  var updatedAt: Date
   
   private enum CodingKeys: String, CodingKey {
     case fullName = "full_name"
     case desc = "description"
     case htmlUrl = "html_url"
+    case stargazersCount = "stargazers_count"
+    case language = "language"
+    case updatedAt = "updated_at"
   }
 }

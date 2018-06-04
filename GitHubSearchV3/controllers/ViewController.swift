@@ -48,7 +48,17 @@ class ViewController: UIViewController {
     searchBar.delegate = self
     searchBar.placeholder = "Search"
     searchBar.returnKeyType = .done
+    searchBar.keyboardType = .alphabet
+    searchBar.returnKeyType = .search
+    searchBar.becomeFirstResponder()
     navigationItem.titleView = searchBar
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    if let indexPathForSelectedRow = tableView.indexPathForSelectedRow {
+      tableView.deselectRow(at: indexPathForSelectedRow, animated: true)
+    }
   }
 
   override func didReceiveMemoryWarning() {
@@ -96,6 +106,10 @@ extension ViewController: UISearchBarDelegate {
     alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
     present(alert, animated: true, completion: nil)
   }
+
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    searchBar.resignFirstResponder()
+  }
 }
 
 // MARK: - TableView
@@ -117,9 +131,8 @@ extension ViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let repository = repositories[indexPath.row]
-    let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-    cell.textLabel?.text = repository.fullName
-    cell.detailTextLabel?.text = repository.desc
+    let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! RepositoryTableViewCell
+    cell.configure(with: repository)
     return cell
   }
 }
