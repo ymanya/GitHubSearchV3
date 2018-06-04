@@ -116,6 +116,7 @@ extension ViewController: UISearchBarDelegate {
 extension ViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let safariVC = SFSafariViewController(url: repositories[indexPath.row].htmlUrl)
+    safariVC.dismissButtonStyle = .close
     present(safariVC, animated: true, completion: nil)
   }
   
