@@ -9,7 +9,10 @@ iOS App for searching GitHub Repo
 
 ### Screenshots
 
-
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ymanya/GitHubSearchV3/master/screenshots/iPhoneX-SearchResult.png" width="150px">
+  <img src="https://raw.githubusercontent.com/ymanya/GitHubSearchV3/master/screenshots/iPhoneX-Searching.gif" width="150px">
+</p>
 
 ## Development Infomation
 
