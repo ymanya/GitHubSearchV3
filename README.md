@@ -20,7 +20,7 @@ iOS App for searching GitHub Repo
 - https://developer.github.com/v3/search/
 
 ### Requirements
-- Xcode 9.4
+- Xcode 10
 
 ### License
 MIT License
