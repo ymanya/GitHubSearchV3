@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0uL-Vr-kqa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0uL-Vr-kqa">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,9 +45,33 @@
                                         <constraint firstItem="krj-8t-zW9" firstAttribute="centerX" secondItem="iYc-GE-80m" secondAttribute="centerX" id="yUd-vU-6cF"/>
                                     </constraints>
                                 </view>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="xHt-iU-2i9">
+                                    <rect key="frame" x="0.0" y="244" width="375" height="28"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="a3h-kc-kdG">
+                                            <rect key="frame" x="177.5" y="4" width="20" height="20"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="a3h-kc-kdG" firstAttribute="top" secondItem="xHt-iU-2i9" secondAttribute="top" constant="4" id="I0O-Ux-875"/>
+                                        <constraint firstAttribute="bottom" secondItem="a3h-kc-kdG" secondAttribute="bottom" constant="4" id="VGD-F4-6G2"/>
+                                        <constraint firstAttribute="height" constant="28" id="r4q-jG-sGd"/>
+                                        <constraint firstItem="a3h-kc-kdG" firstAttribute="centerX" secondItem="xHt-iU-2i9" secondAttribute="centerX" id="weL-8c-JY7"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="94" id="tkZ-dI-z2W" customClass="RepositoryTableViewCell" customModule="GitHubSearchV3" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="4fo-Qv-u5h">
                                         <rect key="frame" x="0.0" y="56" width="375" height="94"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4fo-Qv-u5h" id="gFX-6b-6CM">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="94" id="tkZ-dI-z2W" customClass="RepositoryTableViewCell" customModule="GitHubSearchV3" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="150" width="375" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tkZ-dI-z2W" id="WhK-Gv-nNn">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="93.5"/>
@@ -61,7 +84,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Swift Programming Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMa-nH-gcf">
-                                                    <rect key="frame" x="15" y="35" width="319" height="16"/>
+                                                    <rect key="frame" x="15" y="35.5" width="319" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="JeL-yf-630"/>
                                                     </constraints>
@@ -70,7 +93,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eEj-H8-6bA">
-                                                    <rect key="frame" x="15" y="55" width="312" height="16"/>
+                                                    <rect key="frame" x="15" y="55.5" width="312" height="16"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Enc-ej-PID">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="16"/>
@@ -151,7 +174,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dJr-ay-BdC">
-                                                    <rect key="frame" x="15" y="75" width="312" height="12"/>
+                                                    <rect key="frame" x="15" y="75.5" width="312" height="12"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated on Today 19:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNb-n6-YPw">
                                                             <rect key="frame" x="0.0" y="0.0" width="312" height="12"/>
@@ -213,6 +236,7 @@
                     <navigationItem key="navigationItem" id="QQh-Ft-tZr"/>
                     <connections>
                         <outlet property="activityIndicator" destination="V9H-AX-zyZ" id="xdf-j9-bMo"/>
+                        <outlet property="footerActivityIndicator" destination="a3h-kc-kdG" id="Ko2-Ib-VcA"/>
                         <outlet property="resultLabel" destination="krj-8t-zW9" id="5O0-xG-JfU"/>
                         <outlet property="tableView" destination="RMv-zQ-x4q" id="SN2-ti-qN4"/>
                     </connections>

@@ -35,10 +35,23 @@ class ViewController: UIViewController {
   /// 検索バー
   let searchBar = UISearchBar()
   
+  var searchText = ""
+  var page = 1
+  var isNextPageLoading = false {
+    didSet {
+      if self.isNextPageLoading {
+        footerActivityIndicator.startAnimating()
+      } else {
+        footerActivityIndicator.stopAnimating()
+      }
+    }
+  }
+  
   // MARK: - IBOutlet
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   @IBOutlet weak var resultLabel: UILabel!
+  @IBOutlet weak var footerActivityIndicator: UIActivityIndicatorView!
 
   // MARK: - ViewController Lifecycle methods
   override func viewDidLoad() {
@@ -83,16 +96,27 @@ extension ViewController: UISearchBarDelegate {
     
     activityIndicator.startAnimating()
     resultText = ""
-
+    
+    self.searchText = searchText
+    page = 1
+    searchRepository()
+  }
+  
+  func searchRepository() {
     timer?.invalidate()
-    timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) {_ in 
-      GitHubClient.SearchRepositories(query: searchText).send { [unowned self] result in
+    timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) {_ in
+      GitHubClient.SearchRepositories(query: self.searchText, page: "\(self.page)").send { [unowned self] result in
         DispatchQueue.main.async {
           self.activityIndicator.stopAnimating()
           switch result {
           case .success(let response):
-            self.repositories = response.items
+            if self.isNextPageLoading {
+              self.repositories = self.repositories + response.items
+            } else {
+              self.repositories = response.items
+            }
             self.resultText = "\(self.repositories.count) of \(response.totalCount)"
+            self.isNextPageLoading = false
           case .failure(let error):
             self.showAlert(withMessage: error.localizedDescription)
           }
@@ -122,6 +146,25 @@ extension ViewController: UITableViewDelegate {
   
   func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
     searchBar.resignFirstResponder()
+  }
+  
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let currentOffsetY = scrollView.contentOffset.y
+    let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
+    let distanceToBottom = maximumOffset - currentOffsetY
+    guard maximumOffset > 0 else {
+      return
+    }
+    
+    guard !isNextPageLoading else {
+      return
+    }
+    
+    if distanceToBottom < 500 {
+      page = page + 1
+      isNextPageLoading = true
+      searchRepository()
+    }
   }
 }
 

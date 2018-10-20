@@ -15,6 +15,7 @@ extension GitHubClient {
     typealias Response = SearchRepositoriesResponse
     
     let query: String
+    let page: String
     
     var path: String {
       return "/search/repositories"
@@ -23,6 +24,7 @@ extension GitHubClient {
     var queries: [URLQueryItem]? {
       return [
         URLQueryItem(name: "q", value: query),
+        URLQueryItem(name: "page", value: page),
       ]
     }
     
