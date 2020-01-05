@@ -84,7 +84,11 @@ struct SearchRepositoriesResponse: Decodable {
 }
 
 /// GitHubリポジトリのモデル
-struct GitHubRepository: Decodable {
+struct GitHubRepository: Decodable, Identifiable {
+    var id: String {
+        fullName
+    }
+    
   /// リポジトリ名
   var fullName: String
   /// リポジトリの説明

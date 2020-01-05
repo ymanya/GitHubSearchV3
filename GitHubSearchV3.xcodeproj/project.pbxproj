@@ -20,6 +20,10 @@
 		9E51CBBE20C292E0006A443B /* GitHubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E51CBBD20C292E0006A443B /* GitHubRequest.swift */; };
 		9E51CBC220C297C8006A443B /* SearchRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E51CBC120C297C8006A443B /* SearchRepositories.swift */; };
 		9E51CBC720C43BB0006A443B /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E51CBC620C43BB0006A443B /* RepositoryTableViewCell.swift */; };
+		F582AC5023C22DDC008684ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582AC4F23C22DDC008684ED /* SceneDelegate.swift */; };
+		F582AC5423C22E82008684ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582AC5323C22E82008684ED /* ContentView.swift */; };
+		F582AC5623C22FDC008684ED /* RepositoryListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582AC5523C22FDC008684ED /* RepositoryListItem.swift */; };
+		F582AC5823C239E2008684ED /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582AC5723C239E2008684ED /* SafariView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,10 @@
 		9E51CBBD20C292E0006A443B /* GitHubRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRequest.swift; sourceTree = "<group>"; };
 		9E51CBC120C297C8006A443B /* SearchRepositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositories.swift; sourceTree = "<group>"; };
 		9E51CBC620C43BB0006A443B /* RepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTableViewCell.swift; sourceTree = "<group>"; };
+		F582AC4F23C22DDC008684ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F582AC5323C22E82008684ED /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F582AC5523C22FDC008684ED /* RepositoryListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListItem.swift; sourceTree = "<group>"; };
+		F582AC5723C239E2008684ED /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,13 +126,13 @@
 		9E51CB8720C1AA22006A443B /* GitHubSearchV3 */ = {
 			isa = PBXGroup;
 			children = (
-				9E3132BD20C59F1D00B01788 /* extensions */,
+				F582AC5123C22DF7008684ED /* Application */,
+				F582AC5223C22E70008684ED /* Views */,
 				9E51CBC320C29B81006A443B /* controllers */,
 				9E51CBB620C277D4006A443B /* requests */,
-				9E51CB8820C1AA22006A443B /* AppDelegate.swift */,
+				9E3132BD20C59F1D00B01788 /* extensions */,
 				9E51CB8F20C1AA24006A443B /* Assets.xcassets */,
 				9E51CB9120C1AA24006A443B /* LaunchScreen.storyboard */,
-				9E51CB9420C1AA24006A443B /* Info.plist */,
 			);
 			path = GitHubSearchV3;
 			sourceTree = "<group>";
@@ -165,6 +173,26 @@
 				9E51CBC620C43BB0006A443B /* RepositoryTableViewCell.swift */,
 			);
 			path = controllers;
+			sourceTree = "<group>";
+		};
+		F582AC5123C22DF7008684ED /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				9E51CB9420C1AA24006A443B /* Info.plist */,
+				9E51CB8820C1AA22006A443B /* AppDelegate.swift */,
+				F582AC4F23C22DDC008684ED /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		F582AC5223C22E70008684ED /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F582AC5323C22E82008684ED /* ContentView.swift */,
+				F582AC5523C22FDC008684ED /* RepositoryListItem.swift */,
+				F582AC5723C239E2008684ED /* SafariView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,12 +331,16 @@
 			files = (
 				9E51CBBE20C292E0006A443B /* GitHubRequest.swift in Sources */,
 				9E51CB8B20C1AA22006A443B /* ViewController.swift in Sources */,
+				F582AC5023C22DDC008684ED /* SceneDelegate.swift in Sources */,
 				9E51CB8920C1AA22006A443B /* AppDelegate.swift in Sources */,
+				F582AC5823C239E2008684ED /* SafariView.swift in Sources */,
 				9E3132C120C59F4A00B01788 /* Date.swift in Sources */,
 				9E3132BF20C59F3600B01788 /* Int.swift in Sources */,
+				F582AC5423C22E82008684ED /* ContentView.swift in Sources */,
 				9E51CBC720C43BB0006A443B /* RepositoryTableViewCell.swift in Sources */,
 				9E51CBBA20C282A9006A443B /* GitHubClient.swift in Sources */,
 				9E51CBC220C297C8006A443B /* SearchRepositories.swift in Sources */,
+				F582AC5623C22FDC008684ED /* RepositoryListItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +446,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -468,7 +500,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -483,7 +515,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RQDH3GXY46;
-				INFOPLIST_FILE = GitHubSearchV3/Info.plist;
+				INFOPLIST_FILE = GitHubSearchV3/Application/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -501,7 +534,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RQDH3GXY46;
-				INFOPLIST_FILE = GitHubSearchV3/Info.plist;
+				INFOPLIST_FILE = GitHubSearchV3/Application/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
