@@ -22,7 +22,7 @@ struct GitHubRepository: Decodable {
   var language: String?
   /// 最終更新日
   var updatedAt: Date
-  
+
   private enum CodingKeys: String, CodingKey {
     case fullName = "full_name"
     case desc = "description"

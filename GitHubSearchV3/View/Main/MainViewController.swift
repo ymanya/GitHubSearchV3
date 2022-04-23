@@ -13,15 +13,15 @@ import SafariServices
 // MARK: - ViewController
 class MainViewController: UIViewController, Localizable {
   static var tableName: String = "Main"
-  
+
   // MARK: - クラス内変数
-  
+
   var subscriptions = Set<AnyCancellable>()
   let viewModel: MainViewModel = MainViewModel()
-  
+
   /// 検索バー
   let searchBar = UISearchBar()
-  
+
   // MARK: - IBOutlet
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -31,7 +31,7 @@ class MainViewController: UIViewController, Localizable {
   // MARK: - ViewController Lifecycle methods
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     searchBar.delegate = self
     searchBar.placeholder = "Search".localize(Self.tableName)
     searchBar.returnKeyType = .done
@@ -39,10 +39,10 @@ class MainViewController: UIViewController, Localizable {
     searchBar.returnKeyType = .search
     searchBar.becomeFirstResponder()
     navigationItem.titleView = searchBar
-    
+
     setupViewModel()
   }
-  
+
   func setupViewModel() {
     viewModel.outputs.repositoriesSubject
       .sink(receiveValue: { [weak self] _ in
@@ -51,11 +51,11 @@ class MainViewController: UIViewController, Localizable {
         }
       })
       .store(in: &subscriptions)
-    
+
     viewModel.outputs.isLoadingSubject
       .sink(receiveValue: { [weak self] isLoading in
         DispatchQueue.main.async {
-          if (isLoading) {
+          if isLoading {
             self?.activityIndicator.startAnimating()
           } else {
             self?.activityIndicator.stopAnimating()
@@ -63,7 +63,7 @@ class MainViewController: UIViewController, Localizable {
         }
       })
       .store(in: &subscriptions)
-    
+
     viewModel.outputs.isNextPageLoadingSubject
       .sink(receiveValue: { [weak self] isNextPageLoading in
         DispatchQueue.main.async {
@@ -75,7 +75,7 @@ class MainViewController: UIViewController, Localizable {
         }
       })
       .store(in: &subscriptions)
-    
+
     viewModel.outputs.resultTextSubject
       .sink(receiveValue: { [weak self] resultText in
         DispatchQueue.main.async {
@@ -83,7 +83,7 @@ class MainViewController: UIViewController, Localizable {
         }
       })
       .store(in: &subscriptions)
-    
+
     viewModel.outputs.showWebViewSubject
       .sink(receiveValue: { [weak self] url in
         DispatchQueue.main.async {
@@ -93,18 +93,20 @@ class MainViewController: UIViewController, Localizable {
         }
       })
       .store(in: &subscriptions)
-    
+
     viewModel.outputs.errorAlertSubject
       .sink(receiveValue: { [weak self] errorAlert in
         DispatchQueue.main.async {
-          let alert = UIAlertController(title: "Error".localize(Self.tableName), message: errorAlert, preferredStyle: .alert)
+          let alert = UIAlertController(title: "Error".localize(Self.tableName),
+                                        message: errorAlert,
+                                        preferredStyle: .alert)
           alert.addAction(UIAlertAction(title: "Close".localize(Self.tableName), style: .default, handler: nil))
           self?.present(alert, animated: true, completion: nil)
         }
       })
       .store(in: &subscriptions)
   }
-  
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     if let indexPathForSelectedRow = tableView.indexPathForSelectedRow {
@@ -117,7 +119,6 @@ class MainViewController: UIViewController, Localizable {
     // Dispose of any resources that can be recreated.
   }
 
-
 }
 
 // MARK: - SearchBar
@@ -125,16 +126,16 @@ extension MainViewController: UISearchBarDelegate {
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
     searchBar.resignFirstResponder()
   }
-  
+
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     guard searchText.count > 0 else {
       viewModel.inputs.resetSearchQuery()
       return
     }
-    
+
     viewModel.inputs.searchRepository(query: searchText)
   }
-  
+
   func showAlert(withMessage message: String) {
     let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
@@ -151,11 +152,11 @@ extension MainViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     viewModel.inputs.handleDidSelectRowAt(indexPath)
   }
-  
+
   func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
     searchBar.resignFirstResponder()
   }
-  
+
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     let currentOffsetY = scrollView.contentOffset.y
     let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
@@ -163,11 +164,11 @@ extension MainViewController: UITableViewDelegate {
     guard maximumOffset > 0 else {
       return
     }
-    
+
     guard !viewModel.isLoadingSubject.value && !viewModel.isNextPageLoadingSubject.value else {
       return
     }
-    
+
     if distanceToBottom < 500 {
       viewModel.inputs.fetchNextPage()
     }
@@ -178,10 +179,13 @@ extension MainViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return viewModel.repositoriesSubject.value.count
   }
-  
+
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? RepositoryTableViewCell else {
+      return UITableViewCell()
+    }
+
     let repository = viewModel.repositoriesSubject.value[indexPath.row]
-    let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! RepositoryTableViewCell
     cell.configure(with: repository)
     return cell
   }

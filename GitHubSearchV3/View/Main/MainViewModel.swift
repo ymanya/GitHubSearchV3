@@ -31,17 +31,17 @@ protocol MainViewModelType {
 }
 
 final class MainViewModel: MainViewModelType, MainViewModelOutputs {
-  
+
   var inputs: MainViewModelInputs { return self }
   var outputs: MainViewModelOutputs { return self }
-  
+
   var repositoriesSubject = CurrentValueSubject<[GitHubRepository], Never>([])
   var isLoadingSubject = CurrentValueSubject<Bool, Never>(false)
   var isNextPageLoadingSubject = CurrentValueSubject<Bool, Never>(false)
   var resultTextSubject = PassthroughSubject<String, Never>()
   var showWebViewSubject = PassthroughSubject<URL, Never>()
   var errorAlertSubject = PassthroughSubject<String, Never>()
-  
+
   /// 検索テキスト
   var searchText: String? = ""
   /// 現在表示中のページ
@@ -54,27 +54,27 @@ final class MainViewModel: MainViewModelType, MainViewModelOutputs {
 }
 
 extension MainViewModel: MainViewModelInputs {
-  
+
   func searchRepository(query: String?) {
     guard let query = query else { return }
-    
+
     timer?.invalidate()
-    
+
     isLoadingSubject.send(true)
     page = 1
     repositoriesSubject.send([])
     searchText = query
     resultTextSubject.send("")
-    
+
     timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
       Task { [weak self] in
         do {
           let result = try await GitHubClient.SearchRepositories(query: query, page: "\(self?.page ?? 1)").send()
-          
+
           self?.isLoadingSubject.send(false)
           self?.repositoriesSubject.value.append(contentsOf: result.items)
           self?.resultTextSubject.send("\(result.items.count) of \(result.totalCount)")
-        } catch(let error) {
+        } catch let error {
           self?.isLoadingSubject.send(false)
           guard let error = error as? GitHubClientError else { return }
           self?.errorAlertSubject.send(error.localizedDescription)
@@ -82,23 +82,23 @@ extension MainViewModel: MainViewModelInputs {
       }
     }
   }
-  
+
   func fetchNextPage() {
     guard !isReachedLastPage else { return }
-    
+
     isNextPageLoadingSubject.send(true)
-    
-    page = page + 1
-    
+
+    page += 1
+
     Task {
       do {
         let result = try await GitHubClient.SearchRepositories(query: searchText ?? "", page: "\(page)").send()
-        
+
         isNextPageLoadingSubject.send(false)
         repositoriesSubject.value.append(contentsOf: result.items)
         resultTextSubject.send("\(self.repositoriesSubject.value.count) of \(result.totalCount)")
         isReachedLastPage = repositoriesSubject.value.count == result.totalCount
-      } catch(let error) {
+      } catch let error {
         isNextPageLoadingSubject.send(false)
         guard let error = error as? GitHubClientError else { return }
         errorAlertSubject.send(error.localizedDescription)
@@ -112,10 +112,10 @@ extension MainViewModel: MainViewModelInputs {
     searchText = ""
     resultTextSubject.send("")
   }
-  
+
   func handleDidSelectRowAt(_ indexPath: IndexPath) {
     let item = repositoriesSubject.value[indexPath.row]
     showWebViewSubject.send(item.htmlUrl)
   }
-  
+
 }

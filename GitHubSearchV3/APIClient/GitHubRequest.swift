@@ -18,7 +18,7 @@ protocol GitHubRequest {
   var path: String { get }
   /// クエリ配列
   var queries: [URLQueryItem]? { get }
-  
+
   /// APIへのリクエストを行うメソッド
   func send() async throws -> Response
 }

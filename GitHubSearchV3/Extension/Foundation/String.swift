@@ -9,7 +9,7 @@
 import Foundation
 
 extension String {
-  
+
   /// 文字列のローカライズ
   ///
   /// - Returns: ローカライズされた文字列

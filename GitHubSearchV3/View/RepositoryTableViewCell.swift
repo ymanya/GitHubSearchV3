@@ -14,7 +14,7 @@ class RepositoryTableViewCell: UITableViewCell {
   @IBOutlet weak var languageLabel: UILabel!
   @IBOutlet weak var starLabel: UILabel!
   @IBOutlet weak var updatedLabel: UILabel!
-  
+
   func configure(with repository: GitHubRepository) {
     fullNameLabel.text = repository.fullName
     descLabel.text = repository.desc
