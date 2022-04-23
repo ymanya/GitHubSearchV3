@@ -22,6 +22,9 @@
 		9E51CBC720C43BB0006A443B /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E51CBC620C43BB0006A443B /* RepositoryTableViewCell.swift */; };
 		9E71E5252812787A0020E4F7 /* GitHubRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E71E5242812787A0020E4F7 /* GitHubRepository.swift */; };
 		9E71E528281279C60020E4F7 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E71E527281279C60020E4F7 /* MainViewModel.swift */; };
+		9E71E52D2812A82D0020E4F7 /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E71E52F2812A82D0020E4F7 /* Main.strings */; };
+		9E71E5322812A86E0020E4F7 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E71E5312812A86E0020E4F7 /* String.swift */; };
+		9E71E5362812A9150020E4F7 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E71E5352812A9150020E4F7 /* UIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,10 @@
 		9E51CBC620C43BB0006A443B /* RepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTableViewCell.swift; sourceTree = "<group>"; };
 		9E71E5242812787A0020E4F7 /* GitHubRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepository.swift; sourceTree = "<group>"; };
 		9E71E527281279C60020E4F7 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		9E71E52E2812A82D0020E4F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		9E71E5302812A8350020E4F7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		9E71E5312812A86E0020E4F7 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		9E71E5352812A9150020E4F7 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +100,8 @@
 		9E3132BD20C59F1D00B01788 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				9E3132BE20C59F3600B01788 /* Int.swift */,
-				9E3132C020C59F4A00B01788 /* Date.swift */,
+				9E71E5342812A9040020E4F7 /* UIKit */,
+				9E71E5332812A8FE0020E4F7 /* Foundation */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -185,8 +192,27 @@
 				9E51CB8A20C1AA22006A443B /* MainViewController.swift */,
 				9E51CB8C20C1AA22006A443B /* Main.storyboard */,
 				9E71E527281279C60020E4F7 /* MainViewModel.swift */,
+				9E71E52F2812A82D0020E4F7 /* Main.strings */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		9E71E5332812A8FE0020E4F7 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				9E3132BE20C59F3600B01788 /* Int.swift */,
+				9E3132C020C59F4A00B01788 /* Date.swift */,
+				9E71E5312812A86E0020E4F7 /* String.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		9E71E5342812A9040020E4F7 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				9E71E5352812A9150020E4F7 /* UIViewController.swift */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +304,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 9E51CB7C20C1AA22006A443B;
 			productRefGroup = 9E51CB8620C1AA22006A443B /* Products */;
@@ -297,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E51CB9320C1AA24006A443B /* LaunchScreen.storyboard in Resources */,
+				9E71E52D2812A82D0020E4F7 /* Main.strings in Resources */,
 				9E51CB9020C1AA24006A443B /* Assets.xcassets in Resources */,
 				9E51CB8E20C1AA22006A443B /* Main.storyboard in Resources */,
 			);
@@ -324,6 +352,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E51CBBE20C292E0006A443B /* GitHubRequest.swift in Sources */,
+				9E71E5322812A86E0020E4F7 /* String.swift in Sources */,
+				9E71E5362812A9150020E4F7 /* UIViewController.swift in Sources */,
 				9E51CB8B20C1AA22006A443B /* MainViewController.swift in Sources */,
 				9E51CB8920C1AA22006A443B /* AppDelegate.swift in Sources */,
 				9E71E5252812787A0020E4F7 /* GitHubRepository.swift in Sources */,
@@ -384,6 +414,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		9E71E52F2812A82D0020E4F7 /* Main.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9E71E52E2812A82D0020E4F7 /* en */,
+				9E71E5302812A8350020E4F7 /* ja */,
+			);
+			name = Main.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -391,6 +430,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -452,6 +492,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

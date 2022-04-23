@@ -1,0 +1,11 @@
+/* 
+  Main.strings
+  GitHubSearchV3
+
+  Created by Yuki Manya.
+  Copyright © ymanya. All rights reserved.
+*/
+
+"Search" = "Search";
+"Error" = "Error";
+"Close" = "Close";

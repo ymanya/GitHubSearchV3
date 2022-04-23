@@ -11,7 +11,9 @@ import Combine
 import SafariServices
 
 // MARK: - ViewController
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, Localizable {
+  static var tableName: String = "Main"
+  
   // MARK: - クラス内変数
   
   var subscriptions = Set<AnyCancellable>()
@@ -31,7 +33,7 @@ class MainViewController: UIViewController {
     super.viewDidLoad()
     
     searchBar.delegate = self
-    searchBar.placeholder = "Search"
+    searchBar.placeholder = "Search".localize(Self.tableName)
     searchBar.returnKeyType = .done
     searchBar.keyboardType = .alphabet
     searchBar.returnKeyType = .search
@@ -95,8 +97,8 @@ class MainViewController: UIViewController {
     viewModel.outputs.errorAlertSubject
       .sink(receiveValue: { [weak self] errorAlert in
         DispatchQueue.main.async {
-          let alert = UIAlertController(title: "Error", message: errorAlert, preferredStyle: .alert)
-          alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
+          let alert = UIAlertController(title: "Error".localize(Self.tableName), message: errorAlert, preferredStyle: .alert)
+          alert.addAction(UIAlertAction(title: "Close".localize(Self.tableName), style: .default, handler: nil))
           self?.present(alert, animated: true, completion: nil)
         }
       })
