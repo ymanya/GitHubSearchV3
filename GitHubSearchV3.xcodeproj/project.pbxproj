@@ -21,6 +21,7 @@
 		9E51CBC220C297C8006A443B /* SearchRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E51CBC120C297C8006A443B /* SearchRepositories.swift */; };
 		9E51CBC720C43BB0006A443B /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E51CBC620C43BB0006A443B /* RepositoryTableViewCell.swift */; };
 		9E71E5252812787A0020E4F7 /* GitHubRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E71E5242812787A0020E4F7 /* GitHubRepository.swift */; };
+		9E71E528281279C60020E4F7 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E71E527281279C60020E4F7 /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		9E51CBC120C297C8006A443B /* SearchRepositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositories.swift; sourceTree = "<group>"; };
 		9E51CBC620C43BB0006A443B /* RepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTableViewCell.swift; sourceTree = "<group>"; };
 		9E71E5242812787A0020E4F7 /* GitHubRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepository.swift; sourceTree = "<group>"; };
+		9E71E527281279C60020E4F7 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 			children = (
 				9E51CB8A20C1AA22006A443B /* MainViewController.swift */,
 				9E51CB8C20C1AA22006A443B /* Main.storyboard */,
+				9E71E527281279C60020E4F7 /* MainViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				9E51CB8920C1AA22006A443B /* AppDelegate.swift in Sources */,
 				9E71E5252812787A0020E4F7 /* GitHubRepository.swift in Sources */,
 				9E3132C120C59F4A00B01788 /* Date.swift in Sources */,
+				9E71E528281279C60020E4F7 /* MainViewModel.swift in Sources */,
 				9E3132BF20C59F3600B01788 /* Int.swift in Sources */,
 				9E51CBC720C43BB0006A443B /* RepositoryTableViewCell.swift in Sources */,
 				9E51CBBA20C282A9006A443B /* GitHubClient.swift in Sources */,
