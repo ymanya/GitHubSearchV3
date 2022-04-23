@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0uL-Vr-kqa">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0uL-Vr-kqa">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="Bx1-r1-4QA">
             <objects>
-                <viewController id="ZGu-cX-U5q" customClass="ViewController" customModule="GitHubSearchV3" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ZGu-cX-U5q" customClass="MainViewController" customModule="GitHubSearchV3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vdd-xg-iGG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" estimatedRowHeight="94" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RMv-zQ-x4q">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="iYc-GE-80m">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="28"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -35,7 +32,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="V9H-AX-zyZ" firstAttribute="centerX" secondItem="iYc-GE-80m" secondAttribute="centerX" id="Ihd-0D-CuS"/>
                                         <constraint firstItem="krj-8t-zW9" firstAttribute="centerY" secondItem="iYc-GE-80m" secondAttribute="centerY" id="Mjm-nO-w67"/>
@@ -46,14 +43,14 @@
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="xHt-iU-2i9">
-                                    <rect key="frame" x="0.0" y="244" width="375" height="28"/>
+                                    <rect key="frame" x="0.0" y="283" width="375" height="28"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="a3h-kc-kdG">
                                             <rect key="frame" x="177.5" y="4" width="20" height="20"/>
                                         </activityIndicatorView>
                                     </subviews>
-                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="a3h-kc-kdG" firstAttribute="top" secondItem="xHt-iU-2i9" secondAttribute="top" constant="4" id="I0O-Ux-875"/>
                                         <constraint firstAttribute="bottom" secondItem="a3h-kc-kdG" secondAttribute="bottom" constant="4" id="VGD-F4-6G2"/>
@@ -63,28 +60,28 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="4fo-Qv-u5h">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="94"/>
+                                        <rect key="frame" x="0.0" y="72.5" width="375" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4fo-Qv-u5h" id="gFX-6b-6CM">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="94" id="tkZ-dI-z2W" customClass="RepositoryTableViewCell" customModule="GitHubSearchV3" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="150" width="375" height="94"/>
+                                        <rect key="frame" x="0.0" y="166.5" width="375" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tkZ-dI-z2W" id="WhK-Gv-nNn">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="93.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350.5" height="94"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="apple/Swift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygg-BQ-vD5">
-                                                    <rect key="frame" x="15" y="11" width="319" height="20.5"/>
+                                                    <rect key="frame" x="16" y="11" width="326.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Swift Programming Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMa-nH-gcf">
-                                                    <rect key="frame" x="15" y="35.5" width="319" height="16"/>
+                                                    <rect key="frame" x="16" y="35.5" width="326.5" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="JeL-yf-630"/>
                                                     </constraints>
@@ -93,7 +90,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eEj-H8-6bA">
-                                                    <rect key="frame" x="15" y="55.5" width="312" height="16"/>
+                                                    <rect key="frame" x="15" y="55.5" width="320.5" height="16"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Enc-ej-PID">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="16"/>
@@ -174,10 +171,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dJr-ay-BdC">
-                                                    <rect key="frame" x="15" y="75.5" width="312" height="12"/>
+                                                    <rect key="frame" x="15" y="75.5" width="320.5" height="12"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated on Today 19:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNb-n6-YPw">
-                                                            <rect key="frame" x="0.0" y="0.0" width="312" height="12"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="320.5" height="12"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -224,6 +221,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="bgg-3b-uWq"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="RMv-zQ-x4q" firstAttribute="leading" secondItem="bgg-3b-uWq" secondAttribute="leading" id="4GW-t7-WJB"/>
@@ -231,7 +229,6 @@
                             <constraint firstItem="RMv-zQ-x4q" firstAttribute="top" secondItem="bgg-3b-uWq" secondAttribute="top" id="B71-5w-oG7"/>
                             <constraint firstItem="RMv-zQ-x4q" firstAttribute="bottom" secondItem="bgg-3b-uWq" secondAttribute="bottom" id="RpY-LY-DJA"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="bgg-3b-uWq"/>
                     </view>
                     <navigationItem key="navigationItem" id="QQh-Ft-tZr"/>
                     <connections>
@@ -250,7 +247,7 @@
             <objects>
                 <navigationController id="0uL-Vr-kqa" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fhS-dI-YdQ">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -262,4 +259,9 @@
             <point key="canvasLocation" x="-310" y="268"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

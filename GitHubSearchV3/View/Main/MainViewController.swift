@@ -10,7 +10,7 @@ import UIKit
 import SafariServices
 
 // MARK: - ViewController
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
   // MARK: - クラス内変数
   /// 取得したリポジトリ配列
   var repositories = [GitHubRepository]() {
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: - SearchBar
-extension ViewController: UISearchBarDelegate {
+extension MainViewController: UISearchBarDelegate {
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
     searchBar.resignFirstResponder()
   }
@@ -139,7 +139,7 @@ extension ViewController: UISearchBarDelegate {
 }
 
 // MARK: - TableView
-extension ViewController: UITableViewDelegate {
+extension MainViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let safariVC = SFSafariViewController(url: repositories[indexPath.row].htmlUrl)
     safariVC.dismissButtonStyle = .close
@@ -170,7 +170,7 @@ extension ViewController: UITableViewDelegate {
   }
 }
 
-extension ViewController: UITableViewDataSource {
+extension MainViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return repositories.count
   }
