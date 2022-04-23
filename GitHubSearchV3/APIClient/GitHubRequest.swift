@@ -18,9 +18,9 @@ protocol GitHubRequest {
   var path: String { get }
   /// クエリ配列
   var queries: [URLQueryItem]? { get }
-  
+
   /// APIへのリクエストを行うメソッド
-  func send(completion: @escaping (Result<Response, GitHubClientError>) -> Void)
+  func send() async throws -> Response
 }
 
 extension GitHubRequest {
@@ -30,19 +30,5 @@ extension GitHubRequest {
   /// ベースURLとパスを組み合わせてリクエストするURL
   var buildUrl: String {
     return baseUrl + path
-  }
-}
-
-/// リクエスト結果のenum
-enum Result<Value, Error> {
-  case success(Value)
-  case failure(GitHubClientError)
-  
-  init(value: Value) {
-    self = .success(value)
-  }
-  
-  init(error: GitHubClientError) {
-    self = .failure(error)
   }
 }

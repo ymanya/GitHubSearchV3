@@ -19,7 +19,7 @@ enum GitHubClientError: Error {
   case invalidResponse(Error?)
   /// 404もしくはレスポンスボディが空
   case httpError(String?)
-  
+
   var localizedDescription: String {
     switch self {
     case .connectionError(let error):
