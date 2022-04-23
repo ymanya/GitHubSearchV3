@@ -104,22 +104,24 @@ extension ViewController: UISearchBarDelegate {
   
   func searchRepository() {
     timer?.invalidate()
-    timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) {_ in
-      GitHubClient.SearchRepositories(query: self.searchText, page: "\(self.page)").send { [unowned self] result in
-        DispatchQueue.main.async {
+    timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] _ in
+      guard let self = self else { return }
+      
+      Task {
+        do {
+          let result = try await GitHubClient.SearchRepositories(query: self.searchText, page: "\(self.page)").send()
+          
           self.activityIndicator.stopAnimating()
-          switch result {
-          case .success(let response):
-            if self.isNextPageLoading {
-              self.repositories = self.repositories + response.items
-            } else {
-              self.repositories = response.items
-            }
-            self.resultText = "\(self.repositories.count) of \(response.totalCount)"
-            self.isNextPageLoading = false
-          case .failure(let error):
-            self.showAlert(withMessage: error.localizedDescription)
+      
+          if self.isNextPageLoading {
+            self.repositories = self.repositories + result.items
+          } else {
+            self.repositories = result.items
           }
+          self.resultText = "\(self.repositories.count) of \(result.totalCount)"
+          self.isNextPageLoading = false
+        } catch(let error) {
+          self.showAlert(withMessage: error.localizedDescription)
         }
       }
     }

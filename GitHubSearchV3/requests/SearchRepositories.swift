@@ -8,8 +8,6 @@
 
 import Foundation
 
-typealias SearchRepositoriesResult = Result<SearchRepositoriesResponse, GitHubClientError>
-
 extension GitHubClient {
   struct SearchRepositories: GitHubRequest {
     typealias Response = SearchRepositoriesResponse
@@ -28,38 +26,36 @@ extension GitHubClient {
       ]
     }
     
-    func send(completion: @escaping (SearchRepositoriesResult) -> Void) {
+    func send() async throws -> SearchRepositoriesResponse {
       var urlComponents = URLComponents(string: buildUrl)!
       urlComponents.queryItems = queries
-      
-      let task = URLSession.shared.dataTask(with: urlComponents.url!) { data, response, error in
-        guard error == nil else {
-          completion(SearchRepositoriesResult(error: .connectionError(error)))
-          return
+        
+      let request = URLRequest(url: urlComponents.url!)
+      do {
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let response = response as? HTTPURLResponse else {
+          throw GitHubClientError.invalidResponse(nil)
         }
-        guard let jsonData = data, let response = response as? HTTPURLResponse else {
-          completion(SearchRepositoriesResult(error: .invalidResponse(error)))
-          return
-        }
-
+        
         switch response.statusCode {
         case 200:
           do {
             let jsonDecoder = JSONDecoder()
             jsonDecoder.dateDecodingStrategy = .iso8601
-            let result = try jsonDecoder.decode(SearchRepositoriesResponse.self, from: jsonData)
-            completion(SearchRepositoriesResult(value: result))
+            let result = try jsonDecoder.decode(SearchRepositoriesResponse.self, from: data)
+            return result
           } catch(let e) {
-            completion(SearchRepositoriesResult(error: .invalidResponse(e)))
+            throw GitHubClientError.invalidResponse(e)
           }
         case 400...599:
-          completion(SearchRepositoriesResult(error: .httpError(String(data: jsonData, encoding: .utf8))))
+          throw GitHubClientError.httpError(String(data: data, encoding: .utf8))
         default:
-          // TODO: 他のステータスは無視しているが必要あれば実装する
-          break
+          throw GitHubClientError.invalidResponse(nil)
         }
+      } catch (let error) {
+        throw GitHubClientError.connectionError(error)
       }
-      task.resume()
     }
   }
 }
